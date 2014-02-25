@@ -1,4 +1,4 @@
-hyper-microblog
-===============
+hyper-microblog-api
+===================
 
-A toy microblog
+The api for a toy microblog.
