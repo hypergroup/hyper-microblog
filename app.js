@@ -24,6 +24,7 @@ app.useBefore('router', function setup(req, res, next) {
     data.href = url;
     _json.call(res, data);
   };
+  app.set('cache-control', 'max-age=3600');
   next();
 });
 
