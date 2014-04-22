@@ -266,9 +266,7 @@ app.get('/users/:user/followers', function(req, res) {
 
 app.get('/users/:user/following', function(req, res) {
   var id = req.params.user;
-  res.json({
-    collection: collection(req)
-  });
+  res.json(collection(req));
 });
 
 function collection(req, prefix, obj) {
