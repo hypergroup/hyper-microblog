@@ -277,12 +277,19 @@ function collection(req, prefix, obj) {
   prefix = prefix || 'users';
   obj = obj || {};
   var collection = obj.collection = [];
-  var i = obj.count = req.b.integerInRange(0, 20);
+  var i = obj.count = req.b.integerInRange(0, 11);
   for(; i > 0; i--) {
     collection.push({
       href: req.base + '/' + prefix + '/' + req.b.uuid()
     });
   };
+  var page = req.query.page;
+  var url = req.base + req.url.split('?')[0];
+  if (page) page = parseInt(page, 10);
+  else page = 0;
+  if (page && page !== 0 && page !== 1) obj.prev = {href: url + '?page=' + (page - 1)};
+  if (page === 1) obj.prev = {href: url};
+  if (obj.count === 10) obj.next = {href: url + '?page=' + (page + 1)};
   return obj;
 }
 
